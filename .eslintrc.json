@@ -1,0 +1,174 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["**/tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "plugins": ["sort-class-members", "unused-imports"],
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "max-len": ["error", { "code": 120 }],
+        "arrow-body-style": "off",
+        "prefer-arrow-callback": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "explicit",
+            "overrides": {
+              "accessors": "explicit",
+              "constructors": "no-public",
+              "methods": "explicit",
+              "properties": "explicit",
+              "parameterProperties": "explicit"
+            }
+          }
+        ],
+        "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "sort-class-members/sort-class-members": [
+          "error",
+          {
+            "order": [
+              "[static-properties]",
+              "[properties]",
+              "[conventional-private-properties]",
+              "constructor",
+              "[static-methods]",
+              "[methods]",
+              "[conventional-private-methods]",
+              "[accessor-pairs]",
+              "[getters]",
+              "[setters]",
+              "[everything-else]"
+            ],
+            "groups": {
+              "constructor": [
+                {
+                  "name": "constructor",
+                  "type": "method",
+                  "sort": "alphabetical"
+                }
+              ],
+              "properties": [
+                {
+                  "type": "property",
+                  "sort": "alphabetical"
+                }
+              ],
+              "getters": [
+                {
+                  "kind": "get",
+                  "sort": "alphabetical"
+                }
+              ],
+              "setters": [
+                {
+                  "kind": "set",
+                  "sort": "alphabetical"
+                }
+              ],
+              "accessor-pairs": [
+                {
+                  "accessorPair": true,
+                  "sort": "alphabetical"
+                }
+              ],
+              "static-properties": [
+                {
+                  "type": "property",
+                  "static": true,
+                  "sort": "alphabetical"
+                }
+              ],
+              "conventional-private-properties": [
+                {
+                  "type": "property",
+                  "name": "/_.+/",
+                  "sort": "alphabetical"
+                }
+              ],
+              "arrow-function-properties": [
+                {
+                  "propertyType": "ArrowFunctionExpression",
+                  "sort": "alphabetical"
+                }
+              ],
+              "methods": [
+                {
+                  "type": "method",
+                  "sort": "alphabetical"
+                }
+              ],
+              "static-methods": [
+                {
+                  "type": "method",
+                  "static": true,
+                  "sort": "alphabetical"
+                }
+              ],
+              "async-methods": [
+                {
+                  "type": "method",
+                  "async": true,
+                  "sort": "alphabetical"
+                }
+              ],
+              "conventional-private-methods": [
+                {
+                  "type": "method",
+                  "name": "/_.+/",
+                  "sort": "alphabetical"
+                }
+              ],
+              "everything-else": [
+                {
+                  "sort": "alphabetical"
+                }
+              ]
+            }
+          }
+        ],
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@angular-eslint/no-empty-lifecycle-method": "off"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    }
+  ]
+}

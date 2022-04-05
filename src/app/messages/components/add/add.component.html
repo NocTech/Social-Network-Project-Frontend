@@ -1,0 +1,23 @@
+<div class="message-container">
+    <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
+        <p>
+            <label>Send message to:</label><br>
+            <select *ngIf="follows" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver"
+                [disabled]="loading" required>
+                <option *ngFor="let follow of follows" value="{{follow.user._id}}">
+                    {{follow.user.name + ' ' + follow.user.surname + ' (' + follow.user.nick + ')'}}
+                </option>
+            </select>
+        </p>
+
+        <p>
+            <label>Message:</label><br>
+            <textarea name="text" #text="ngModel" class="textarea" [(ngModel)]="message.text" [disabled]="loading" required></textarea>
+            <span *ngIf="!text.valid && text.touched">
+                <i>Message is mandatory</i>
+            </span>
+        </p>
+
+        <input type="submit" value="Send" [disabled]="loading" />
+    </form>
+</div>

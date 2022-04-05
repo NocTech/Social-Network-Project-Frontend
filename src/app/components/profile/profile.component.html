@@ -1,0 +1,76 @@
+<div>
+    <div *ngIf="user">
+        <div>
+            <div>
+                <img src="{{ url + 'get-image-user/' + user.image}}" *ngIf="user.image" />
+                <img src="assets/icons8-developer.gif" *ngIf="!user.image" />
+            </div>
+
+            <div>
+                <div *ngIf="followed">
+                    Follows you
+                </div>
+                <div></div>
+                <div>
+                    <p>{{user.name + ' ' + user.surname}}</p>
+                    <p>{{user.nick}}</p>
+                </div>
+
+                <div></div>
+
+                <div>
+                    <button *ngIf="!following && user._id !== identity._id" (click)="followUser(user._id)">
+                        Follow
+                    </button>
+                    <button *ngIf="following" (click)="unfollowUser(user._id)" (mouseenter)="mouseEnter(user._id)"
+                        (mouseleave)="mouseLeave()" [class.btn-danger]="user._id === followUserOver">
+                        <span *ngIf="user._id === followUserOver; else following">
+                            Stop following
+                        </span>
+                        <ng-template #following>
+                            Following
+                        </ng-template>
+                    </button>
+                </div>
+            </div>
+
+            <div *ngIf="stats">
+                <div>
+                    <a [routerLink]="['/following', user._id, 1]">
+                        <span>
+                            <strong>{{stats.following}}</strong>
+                        </span>
+                        <span>
+                            &nbsp;following
+                        </span>
+                    </a>
+                </div>
+
+                <div>
+                    <a [routerLink]="['/followers', user._id, 1]">
+                        <span>
+                            <strong>{{stats.followed}}</strong>
+                        </span>
+                        <span>
+                            &nbsp;followers
+                        </span>
+                    </a>
+                </div>
+
+                <div>
+                    <a [routerLink]="['/profile', user._id]">
+                        <span>
+                            <strong>{{stats.publications}}</strong>
+                        </span>
+                        <span>
+                            &nbsp;posts
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<app-sidebar></app-sidebar>

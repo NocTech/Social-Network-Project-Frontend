@@ -1,0 +1,55 @@
+<div class="navbar">
+    <div *ngIf="identity">
+        <a [routerLink]="['/home']" [routerLinkActive]="['active']">
+            Home
+        </a>
+        <a [routerLink]="['/chat']" [routerLinkActive]="['active']">
+            Chat
+        </a>
+
+        <a [routerLink]="['/messages']" [routerLinkActive]="['active']">
+            Messages
+        </a>
+
+        <a [routerLink]="['/timeline']" [routerLinkActive]="['active']">
+            Timeline
+        </a>
+
+        <a [routerLink]="['/people']" [routerLinkActive]="['active']">
+            People
+        </a>
+
+    </div>
+    <div *ngIf="!identity">
+        <a [routerLink]="['/login']" [routerLinkActive]="['active']">
+            Login
+        </a>
+
+        <a [routerLink]="['/register']" [routerLinkActive]="['active']">
+            Register
+        </a>
+    </div>
+    <div class="dropdown" *ngIf="identity">
+        <button class="dropbtn"><img class="dropdown-image" src="{{ url + 'get-image-user/' + identity.image}}"
+                *ngIf="identity && identity.image" />
+            <img class="dropdown-image" src="assets/icons8-developer.gif" *ngIf="!identity.image" />
+            {{identity.name}}
+        </button>
+        <div class="dropdown-content">
+            <a [routerLink]="['/profile/', identity._id]">
+                My Profile
+            </a>
+            <a [routerLink]="['/account']">
+                Account Details
+            </a>
+            <a (click)="lougout()">
+                Log out
+            </a>
+        </div>
+    </div>
+</div>
+<section>
+    <router-outlet></router-outlet>
+    <app-alert></app-alert>
+</section>
+<app-footer class="footer"></app-footer>

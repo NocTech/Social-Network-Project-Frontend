@@ -1,0 +1,18 @@
+<div id="new-publication">
+    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event)">
+        <p>
+            <label class="publication-text">What are you doing?</label><br>
+            <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" [disabled]="loading"
+                required></textarea><br>
+            <span class="warning-text" *ngIf="!text.valid && text.touched">
+                <i>Some text is required</i>
+            </span>
+        </p>
+        <!-- <p>
+            <input type="file" name="file" id="file" class="inputfile" (change)="fileChangeEvent($event)"
+                [disabled]="loading" />
+            <label for="file">Select an image</label>
+        </p> -->
+        <input type="submit" value="Send" [disabled]="!newPubForm.form.valid" [disabled]="loading" />
+    </form>
+</div>

@@ -1,0 +1,83 @@
+<div>
+    <div *ngIf="publications && publications.length === 0" class="no-publications publications">
+        This user doesn´t have any post.
+    </div>
+
+    <div id="publications" *ngIf="publications && publications.length > 0">
+        <div *ngFor="let publication of publications" class="item-publication">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="image-user pull-left">
+                        <a [routerLink]="['/profile/', publication.user._id]">
+                            <img src="{{ url + 'get-image-user/' + publication.user.image}}"
+                                *ngIf="publication.user.image" />
+                            <img src="assets/icons8-developer.gif" class="avatar-default"
+                                *ngIf="!publication.user.image" />
+                        </a>
+                    </div>
+                    <div>
+                        <a [routerLink]="['/profile/', publication.user._id]" class="user-name">
+                            {{publication.user.name + ' ' +publication.user.surname}}
+                        </a>
+                        &nbsp;|&nbsp;
+                        <span class="date">
+                            {{ publication.created_at }}
+                        </span>
+                    </div>
+                    <div class="publication-text-container">
+                        <h4 class="publication-text pull-left">
+                            {{publication.text}}
+                        </h4>
+                    </div>
+
+                    <div class="publication-button" *ngIf="publication.user._id === identity._id">
+                        <button type="button" (click)="deletePublication(publication._id); sidebar.getCounters();"
+                            data-dismiss="modal">
+                            Delete
+                        </button>
+                    </div>
+
+                    <div class="pull-right publication-button" *ngIf="publication.file !== 'null'">
+                        <a (click)="showThisImage(publication._id)" class="show-image"
+                            *ngIf="showImage !== publication._id">
+                            <span class="glyphicon glyphicon-picture"></span>
+                        </a>
+                    </div>
+
+                    <!--PUBLICATION IMAGE-->
+                    <div class="col-lg-12 publication-image"
+                        *ngIf="publication.file !== 'null' && showImage === publication._id">
+                        <br />
+                        <img src="{{url + 'get-image-publication/' + publication.file }}" class="col-lg-12" />
+                        <a class="close-image" (click)="hideThisImage(publication._id)"
+                            *ngIf="showImage === publication._id">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </a>
+                    </div>
+                    <!--LIKES-->
+                    <div class="likes-container">
+                        <div *ngIf="!publication.liked">
+                            <img (click)="doLike(publication, $event)" src="../../../assets/images/empty-heart.png"
+                                class="heart" />
+                        </div>
+                        <div *ngIf="publication.liked">
+                            <img (click)="doLike(publication, $event)" src="../../../assets/images/liked-heart.png"
+                                class="heart" />
+                        </div>
+                        <span class="likes">{{ publication.likes ? publication.likes.length : '0' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center" *ngIf="publications && publications.length">
+        <p>
+            <a class="load-more" (click)="viewMore()" *ngIf="!noMore">
+                <span class="glyphicon glyphicon-plus-sign">Load more</span>
+            </a>
+        </p>
+    </div>
+</div>
+
+<!-- <app-sidebar #sidebar (sent)="refresh($event)"></app-sidebar> -->
+<div class="clearfix"></div>

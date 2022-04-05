@@ -1,0 +1,26 @@
+:host {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    user-select: none;
+    z-index: 1;
+  }
+
+  .content {
+    background-color: #333;
+    width: 100%;
+    border-top: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    color: #fff;
+    font-size: 12px;
+  }
+  
+  p {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  

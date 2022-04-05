@@ -1,0 +1,49 @@
+<div>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+        <h1>{{title}}</h1>
+        <p>
+            <label>Name: </label><br>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" required />*
+            <span *ngIf="!name.valid && name.touched">
+                <i>User Name Required</i>
+            </span>
+        </p>
+
+        <p>
+            <label>Surname: </label><br>
+            <input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" required />*
+            <span *ngIf="!surname.valid && surname.touched">
+                <i>User Surname Required</i>
+            </span>
+        </p>
+
+        <p>
+            <label>Nickname: </label><br>
+            <input type="text" name="nick" #nick="ngModel" [(ngModel)]="user.nick" required />*
+            <span *ngIf="!nick.valid && nick.touched">
+                <i>User Nickname Required</i>
+            </span>
+        </p>
+
+        <p>
+            <label>Email: </label><br>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />*
+            <span *ngIf="!email.valid && email.touched">
+                <i>User Email Required</i>
+            </span>
+        </p>
+
+        <p>
+            <label>Password: </label><br>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required />*
+            <span *ngIf="!password.valid && password.touched">
+                <i>User Password Required</i>
+            </span>
+        </p>
+
+        <div>
+            <input type="submit" value="{{title}}" [disabled]="!registerForm.form.valid" />
+        </div>
+    </form>
+</div>

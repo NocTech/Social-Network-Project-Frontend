@@ -1,0 +1,26 @@
+<div>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <h1>{{title}}</h1>
+        <p>
+            <label>Email: </label><br>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autocomplete="email" />*<br>
+            <span *ngIf="!email.valid && email.touched">
+                <i>The email is incorrect</i>
+            </span>
+        </p>
+        <p>
+            <label>Password: </label><br>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required
+                autocomplete="password" />*<br>
+            <span *ngIf="!password.valid && password.touched">
+                <i>The password is required</i>
+            </span>
+        </p>
+
+        <div>
+            <input type="submit" value="Enter" [disabled]="!loginForm.form.valid" />
+            <br><a [routerLink]="['/forgot-password']" href=""><i>Forgot your password?</i></a>
+        </div>
+    </form>
+</div>

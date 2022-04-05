@@ -1,0 +1,36 @@
+<div class="" *ngIf="messages">
+    <div *ngIf="messages && messages.length === 0" class="no-messages">
+        You didn´t send any messages.
+    </div>
+    <div *ngFor="let message of messages" class="item-user">
+        <div class="panel panel-default" *ngIf="message.emitter">
+            <div class="panel-body">
+                <div class="user-name pull-left">
+                    <p class="name-surname">
+                        <span class="message-to">
+                            To <a [routerLink]="['/profile', message.receiver._id]">{{message.receiver.name + ' ' +
+                                message.receiver.surname}}</a>
+                        </span>
+                        &nbsp;<br>
+                        <span class="date nickname">
+                            <i>{{ message.created_at}}</i>
+                            &nbsp;|
+                            <i> {{ (message.created_at)}} </i>
+                        </span>
+                    </p>
+                    <div class="message-text">
+                        <p><strong>
+                                {{message.text}}
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <ul class="pagination pull-right" *ngIf="pages > 1">
+        <li *ngIf="page > 1"><a class="previous" [routerLink]="['/messages/sent', prev_page]">Previous</a></li>
+        <li *ngIf="pages !== page"><a class="next" [routerLink]="['/messages/sent', next_page]">Next</a></li>
+    </ul>
