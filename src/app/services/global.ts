@@ -1,4 +1,4 @@
 export let GLOBAL = {
-    url: 'http://localhost:3800/api/',
-    url_general: 'http://localhost:3800'
+    url: 'https://the-social-network-backend.herokuapp.com/api/',
+    url_general: 'https://the-social-network-backend.herokuapp.com/'
 }
